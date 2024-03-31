@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var tileSpawner = preload ("res://systems/map/tile.tscn")
 @onready var edgeSpawner = preload ("res://systems/map/edge.tscn")
+@onready var crossSpawner = preload ("res://systems/map/cross.tscn")
 
 func tile(coord: Vector2i, size: float) -> Tile:
 	var tileScene = tileSpawner.instantiate() as Tile
@@ -17,3 +18,10 @@ func edge(v1: Vector2i, v2: Vector2i, size: float, thickness: float) -> Edge:
 	edgeScene.v1 = v1
 	edgeScene.v2 = v2
 	return edgeScene
+
+func cross(coord: Vector2i, tileSize: float, thickness: float) -> Cross:
+	var crossScene = crossSpawner.instantiate() as Cross
+	crossScene.tileSize = tileSize
+	crossScene.thickness = thickness
+	crossScene.coordinates = coord
+	return crossScene

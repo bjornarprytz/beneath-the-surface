@@ -12,6 +12,7 @@ extends Node2D
 var _tilesLookup: Array[Array] = []
 var _edgeColumnLookup: Array[Array] = []
 var _edgeRowLookup: Array[Array] = []
+var _intersectionLookup: Array[Array] = []
 
 func _ready():
 	_update_map()
@@ -45,5 +46,14 @@ func _update_map():
 			row.append(edge)
 			edges.add_child(edge)
 		_edgeRowLookup.append(row)
+	
+	# Create intersections (cross)
+	for x in range(1, data.width):
+		_intersectionLookup.append([])
+		for y in range(1, data.height):
+			var intersection = Create.cross(Vector2i(x, y), tileSize, edgeThickness)
+			intersection.position = Vector2(x * tileSize, y * tileSize)
+			edges.add_child(intersection)
+			_intersectionLookup[x - 1].append(intersection)
 
 	# Connect edges and tiles

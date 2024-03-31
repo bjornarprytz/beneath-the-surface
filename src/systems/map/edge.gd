@@ -11,6 +11,9 @@ var v2: Vector2i
 var size: float
 var thickness: float
 
+var tiles : Array[Tile]
+var edges : Array[Edge]
+
 func get_neigbours() -> Array[Edge]:
 	var neigbours = []
 	push_error("get_neigbours() not implemented")
