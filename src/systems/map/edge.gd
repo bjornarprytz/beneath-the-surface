@@ -1,7 +1,7 @@
 class_name Edge
 extends Node2D
 
-@onready var line: Line2D = $Line
+@onready var background: ColorRect = $Background
 
 ## Coordinates correspond to the top left corner of a tile
 var v1: Vector2i
@@ -9,6 +9,7 @@ var v1: Vector2i
 var v2: Vector2i
 ## Length of the edge. This should the same across the board
 var size: float
+var thickness: float
 
 func get_neigbours() -> Array[Edge]:
 	var neigbours = []
@@ -26,5 +27,25 @@ func get_hardware() -> Array[Hardware]:
 	return hardware
 
 func _draw() -> void:
-	line.add_point(Vector2(0, 0))
-	line.add_point((v2 - v1) * size)
+	if size == 0:
+		return
+
+	background.size = Vector2(size, thickness)
+	var halfHeight = thickness / 2
+	background.pivot_offset = Vector2(0, halfHeight)
+	background.position = Vector2(0, -halfHeight)
+	background.scale.y = thickness / size
+
+	if v2 - v1 == Vector2i.RIGHT:
+		background.rotation_degrees = 0
+	elif v2 - v1 == Vector2i.DOWN:
+		background.rotation_degrees = 90
+	else:
+		push_error("Weird edge direction %s" % (v2 - v1))
+		return
+
+func _on_background_mouse_entered() -> void:
+	background.modulate = Color(0.5, 0.5, 0.5, 1)
+
+func _on_background_mouse_exited() -> void:
+	background.modulate = Color(1, 1, 1, 1)

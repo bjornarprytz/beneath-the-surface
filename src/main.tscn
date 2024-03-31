@@ -5,3 +5,4 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("1_j4qsy")]
+position = Vector2(79, 81)

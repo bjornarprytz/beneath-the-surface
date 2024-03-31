@@ -5,6 +5,7 @@ extends Node2D
 @onready var edges = $Edges
 
 @export var tileSize: float = 50
+@export var edgeThickness: float = 20
 @export var data: MapData
 
 ## [X][Y] = tile
@@ -25,22 +26,24 @@ func _update_map():
 			tiles.add_child(tile)
 		_tilesLookup.append(column)
 
-	# Create edge lookup |||
+	# Create edge columns
 	for x in range(data.width + 1):
 		var column = []
 		for y in range(data.height):
-			var edge = Create.edge(Vector2i(x, y), Vector2i(x, y + 1), tileSize)
+			var edge = Create.edge(Vector2i(x, y), Vector2i(x, y + 1), tileSize, edgeThickness)
 			edge.position = Vector2(x * tileSize, y * tileSize)
 			column.append(edge)
 			edges.add_child(edge)
 		_edgeColumnLookup.append(column)
 	
-	# Create edge lookup ---
+	# Create edge rows
 	for x in range(data.width):
 		var row = []
 		for y in range(data.height + 1):
-			var edge = Create.edge(Vector2i(x, y), Vector2i(x + 1, y), tileSize)
+			var edge = Create.edge(Vector2i(x, y), Vector2i(x + 1, y), tileSize, edgeThickness)
 			edge.position = Vector2(x * tileSize, y * tileSize)
 			row.append(edge)
 			edges.add_child(edge)
 		_edgeRowLookup.append(row)
+
+	# Connect edges and tiles

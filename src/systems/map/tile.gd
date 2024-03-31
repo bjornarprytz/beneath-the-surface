@@ -30,5 +30,14 @@ func get_software() -> Array[Software]:
 	push_error("get_software() not implemented")
 	return []
 
+func _ready() -> void:
+	background.tooltip_text = str(coordinates)
+
 func _draw() -> void:
 	background.size = Vector2(size, size)
+
+func _on_background_mouse_entered() -> void:
+	background.modulate = Color(0.5, 0.5, 0.5, 1)
+
+func _on_background_mouse_exited() -> void:
+	background.modulate = Color(1, 1, 1, 1)

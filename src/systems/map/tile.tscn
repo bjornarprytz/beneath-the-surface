@@ -8,3 +8,7 @@ script = ExtResource("1_2fi37")
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+color = Color(0.027451, 0.396078, 0.537255, 1)
+
+[connection signal="mouse_entered" from="Background" to="." method="_on_background_mouse_entered"]
+[connection signal="mouse_exited" from="Background" to="." method="_on_background_mouse_exited"]
