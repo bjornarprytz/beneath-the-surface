@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0cfnk1dintnr"]
+
+[ext_resource type="Script" path="res://systems/map/edge.gd" id="1_j3acv"]
+
+[node name="Edge" type="Node2D"]
+script = ExtResource("1_j3acv")
+
+[node name="Line" type="Line2D" parent="."]
+default_color = Color(0.0980392, 0.0980392, 0.0980392, 1)

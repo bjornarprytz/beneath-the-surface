@@ -1,0 +1,2 @@
+class_name Hardware
+extends Node2D

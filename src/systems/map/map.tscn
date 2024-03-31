@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2n412is84ugq"]
+
+[ext_resource type="Script" path="res://systems/map/map.gd" id="1_wmym4"]
+[ext_resource type="Script" path="res://systems/map/mapData.gd" id="2_nryj8"]
+
+[sub_resource type="Resource" id="Resource_e2q3d"]
+script = ExtResource("2_nryj8")
+height = 10
+width = 10
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_wmym4")
+data = SubResource("Resource_e2q3d")
+
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="Edges" type="Node2D" parent="."]
+
+[node name="Hardware" type="Node2D" parent="."]
+
+[node name="Software" type="Node2D" parent="."]
