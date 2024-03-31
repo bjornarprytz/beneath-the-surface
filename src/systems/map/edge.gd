@@ -11,18 +11,28 @@ var v2: Vector2i
 var size: float
 var thickness: float
 
-var tiles : Array[Tile]
-var edges : Array[Edge]
+var _tiles: Array[Tile]
+var _intersections: Array[Cross]
 
-func get_neigbours() -> Array[Edge]:
-	var neigbours = []
-	push_error("get_neigbours() not implemented")
-	return neigbours
+func connect_tile(tile: Tile):
+	if _tiles.has(tile):
+		return
+	
+	_tiles.append(tile)
+	tile.connect_edge(self)
+
+func connect_intersection(intersection: Cross):
+	if _intersections.has(intersection):
+		return
+	
+	_intersections.append(intersection)
+	intersection.connect_edge(self)
+
+func get_intersections() -> Array[Cross]:
+	return _intersections
 
 func get_tiles() -> Array[Tile]:
-	var tiles = []
-	push_error("get_tiles() not implemented")
-	return tiles
+	return _tiles
 
 func get_hardware() -> Array[Hardware]:
 	var hardware = []
@@ -39,16 +49,35 @@ func _draw() -> void:
 	background.position = Vector2(0, -halfHeight)
 	background.scale.y = thickness / size
 
-	if v2 - v1 == Vector2i.RIGHT:
+	if Edge.is_horizontal(v1, v2):
 		background.rotation_degrees = 0
-	elif v2 - v1 == Vector2i.DOWN:
-		background.rotation_degrees = 90
 	else:
-		push_error("Weird edge direction %s" % (v2 - v1))
-		return
+		background.rotation_degrees = 90
 
 func _on_background_mouse_entered() -> void:
 	background.modulate = Color(0.5, 0.5, 0.5, 1)
+	
+	for t in _tiles:
+		t.modulate = Color(0.5, 0.5, 0.5, 1)
+	
+	for i in _intersections:
+		i.modulate = Color(0.5, 0.5, 0.5, 1)
 
 func _on_background_mouse_exited() -> void:
 	background.modulate = Color(1, 1, 1, 1)
+	
+	for t in _tiles:
+		t.modulate = Color(1, 1, 1, 1)
+
+	for i in _intersections:
+		i.modulate = Color(1, 1, 1, 1)
+
+static func is_horizontal(coord1: Vector2i, coord2: Vector2i) -> bool:
+	if coord2 - coord1 == Vector2i.RIGHT:
+		return true
+	elif coord2 - coord1 == Vector2i.DOWN:
+		return false
+	else:
+		assert(false, "Weird edge direction %s" % (coord1 - coord2))
+		return false
+		

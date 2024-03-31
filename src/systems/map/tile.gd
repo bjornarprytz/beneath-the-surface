@@ -8,6 +8,15 @@ var coordinates: Vector2i
 ## The size of the tile in pixels.
 var size: float
 
+var _edges: Array[Edge] = []
+
+func connect_edge(edge: Edge) -> void:
+	if _edges.has(edge):
+		return
+
+	_edges.append(edge)
+	edge.connect_tile(self)
+
 func get_edges() -> Array[Edge]:
 	var edges = []
 	
@@ -39,5 +48,11 @@ func _draw() -> void:
 func _on_background_mouse_entered() -> void:
 	background.modulate = Color(0.5, 0.5, 0.5, 1)
 
+	for e in _edges:
+		e.modulate = Color(0.5, 0.5, 0.5, 1)
+
 func _on_background_mouse_exited() -> void:
 	background.modulate = Color(1, 1, 1, 1)
+
+	for e in _edges:
+		e.modulate = Color(1, 1, 1, 1)

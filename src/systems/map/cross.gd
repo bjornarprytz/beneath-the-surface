@@ -8,6 +8,16 @@ var coordinates: Vector2i
 var tileSize: float
 var thickness: float
 
+## TODO: make north, south, east, west edges
+var edges: Array[Edge] = []
+
+func connect_edge(edge: Edge) -> void:
+	if edges.has(edge):
+		return
+	
+	edges.append(edge)
+	edge.connect_intersection(self)
+
 func _draw() -> void:
 	if tileSize == 0:
 		return
@@ -27,5 +37,11 @@ func _draw() -> void:
 func _on_background_mouse_entered() -> void:
 	modulate = Color(0.5, 0.5, 0.5, 1)
 
+	for e in edges:
+		e.modulate = Color(0.5, 0.5, 0.5, 1)
+
 func _on_background_mouse_exited() -> void:
 	modulate = Color(1, 1, 1, 1)
+
+	for e in edges:
+		e.modulate = Color(1, 1, 1, 1)
