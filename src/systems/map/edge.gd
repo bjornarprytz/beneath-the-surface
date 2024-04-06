@@ -1,6 +1,10 @@
 class_name Edge
 extends Node2D
 
+signal hovered(edge: Edge)
+signal unhovered(edge: Edge)
+signal clicked(edge: Edge)
+
 @onready var background: ColorRect = $Background
 
 ## Coordinates correspond to the top left corner of a tile
@@ -56,21 +60,19 @@ func _draw() -> void:
 
 func _on_background_mouse_entered() -> void:
 	background.modulate = Color(0.5, 0.5, 0.5, 1)
-	
 	for t in _tiles:
 		t.modulate = Color(0.5, 0.5, 0.5, 1)
-	
 	for i in _intersections:
 		i.modulate = Color(0.5, 0.5, 0.5, 1)
+	hovered.emit(self)
 
 func _on_background_mouse_exited() -> void:
 	background.modulate = Color(1, 1, 1, 1)
-	
 	for t in _tiles:
 		t.modulate = Color(1, 1, 1, 1)
-
 	for i in _intersections:
 		i.modulate = Color(1, 1, 1, 1)
+	unhovered.emit(self)
 
 static func is_horizontal(coord1: Vector2i, coord2: Vector2i) -> bool:
 	if coord2 - coord1 == Vector2i.RIGHT:
@@ -80,4 +82,9 @@ static func is_horizontal(coord1: Vector2i, coord2: Vector2i) -> bool:
 	else:
 		assert(false, "Weird edge direction %s" % (coord1 - coord2))
 		return false
-		
+
+func _on_background_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouseEvent = event as InputEventMouseButton
+		if mouseEvent.button_index == MOUSE_BUTTON_LEFT and mouseEvent.pressed:
+			clicked.emit(self)

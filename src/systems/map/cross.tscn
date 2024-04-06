@@ -22,7 +22,9 @@ offset_bottom = 11.0
 pivot_offset = Vector2(20, 11)
 color = Color(0.282353, 0.533333, 0.568627, 1)
 
+[connection signal="gui_input" from="Background1" to="." method="_on_background_1_gui_input"]
 [connection signal="mouse_entered" from="Background1" to="." method="_on_background_mouse_entered"]
 [connection signal="mouse_exited" from="Background1" to="." method="_on_background_mouse_exited"]
+[connection signal="gui_input" from="Background2" to="." method="_on_background_gui_input"]
 [connection signal="mouse_entered" from="Background2" to="." method="_on_background_mouse_entered"]
 [connection signal="mouse_exited" from="Background2" to="." method="_on_background_mouse_exited"]

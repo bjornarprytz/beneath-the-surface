@@ -1,6 +1,10 @@
 class_name Tile
 extends Node2D
 
+signal hovered(tile: Tile)
+signal unhovered(tile: Tile)
+signal clicked(tile: Tile)
+
 @onready var background: ColorRect = $Background
 
 var coordinates: Vector2i
@@ -47,12 +51,18 @@ func _draw() -> void:
 
 func _on_background_mouse_entered() -> void:
 	background.modulate = Color(0.5, 0.5, 0.5, 1)
-
 	for e in _edges:
 		e.modulate = Color(0.5, 0.5, 0.5, 1)
+	hovered.emit(self)
 
 func _on_background_mouse_exited() -> void:
 	background.modulate = Color(1, 1, 1, 1)
-
 	for e in _edges:
 		e.modulate = Color(1, 1, 1, 1)
+	unhovered.emit(self)
+
+func _on_background_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouseEvent = event as InputEventMouseButton
+		if mouseEvent.button_index == MOUSE_BUTTON_LEFT and mouseEvent.pressed:
+			clicked.emit(self)

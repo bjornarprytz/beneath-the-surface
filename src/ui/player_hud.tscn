@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://ooqsoaduvaih"]
+
+[ext_resource type="Script" path="res://ui/playerHud.gd" id="1_q88xo"]
+[ext_resource type="PackedScene" uid="uid://dgslutv75cjw0" path="res://ui/hardware_button.tscn" id="1_ylk2c"]
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q88xo")
+
+[node name="Buildings" type="HFlowContainer" parent="."]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 604.0
+offset_right = 751.0
+offset_bottom = 687.0
+
+[node name="HardwareButton" parent="Buildings" instance=ExtResource("1_ylk2c")]
+layout_mode = 2
+
+[node name="HardwareButton2" parent="Buildings" instance=ExtResource("1_ylk2c")]
+layout_mode = 2
+
+[node name="HardwareButton3" parent="Buildings" instance=ExtResource("1_ylk2c")]
+layout_mode = 2
+
+[node name="HardwareButton4" parent="Buildings" instance=ExtResource("1_ylk2c")]
+layout_mode = 2
+
+[node name="HardwareButton5" parent="Buildings" instance=ExtResource("1_ylk2c")]
+layout_mode = 2
+
+[node name="HardwareButton6" parent="Buildings" instance=ExtResource("1_ylk2c")]
+layout_mode = 2
+
+[node name="HardwareButton7" parent="Buildings" instance=ExtResource("1_ylk2c")]
+layout_mode = 2

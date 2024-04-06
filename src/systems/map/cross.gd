@@ -1,6 +1,10 @@
 class_name Cross
 extends Node2D
 
+signal hovered(intersection: Cross)
+signal unhovered(intersection: Cross)
+signal clicked(intersection: Cross)
+
 @onready var background1: ColorRect = $Background1
 @onready var background2: ColorRect = $Background2
 
@@ -36,12 +40,18 @@ func _draw() -> void:
 
 func _on_background_mouse_entered() -> void:
 	modulate = Color(0.5, 0.5, 0.5, 1)
-
 	for e in edges:
 		e.modulate = Color(0.5, 0.5, 0.5, 1)
+	hovered.emit(self)
 
 func _on_background_mouse_exited() -> void:
 	modulate = Color(1, 1, 1, 1)
-
 	for e in edges:
 		e.modulate = Color(1, 1, 1, 1)
+	unhovered.emit(self)
+
+func _on_background_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		var mouseEvent = event as InputEventMouseButton
+		if mouseEvent.button_index == MOUSE_BUTTON_LEFT and mouseEvent.pressed:
+			clicked.emit(self)

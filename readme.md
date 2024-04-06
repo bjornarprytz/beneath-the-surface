@@ -7,17 +7,39 @@ Stipulation: Procedural Art
 ## TODO
 
 - Systems
-  - Networking
+  - Build Action
   - UI for building
-  - A 2D grid map
-    - Air gaps
-  - Buildings (Servers, Fire Walls, Routers, GPUs, C3 (command and control centers), BotNets)
-    - On tiles (structures)
-    - Between tiles (fencing)
+    - hotkeyed row of building options
+  - Hardware
+    - Database (Tile)
+    - Fire Wall (Edge)
   - Units (Programs)
+    - Test unit: Daemon
+    - 
+    - Pathfinding
     - Movement happens tick-wise
     - Movement strategy and pattern defines the program
-  - Fog of war
+  - Tick
+    - Move
+    - Defend
+    - Execute
+  - Networking
+
+## Ideas
+
+- Research
+  - A kind of passive progress depicted on the building bar
+  - The player can reorder them to indicate research priority
+
+- Hardware
+  - Tile
+    - GPU
+  - Edge
+    - Encryption Layer
+
+- Fog of war
+  - Known map parts
+  - "Last known"
 
 ## Chore
 
