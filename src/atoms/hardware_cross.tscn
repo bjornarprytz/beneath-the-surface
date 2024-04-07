@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c50i430ywtyxf"]
+
+[ext_resource type="Script" path="res://atoms/crossHardware.gd" id="1_beo4p"]
+
+[sub_resource type="Theme" id="Theme_eqemx"]
+default_font_size = 256
+
+[node name="HardwareCross" type="Node2D"]
+script = ExtResource("1_beo4p")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 350.0
+offset_bottom = 350.0
+scale = Vector2(0.1, 0.1)
+theme = SubResource("Theme_eqemx")
+bbcode_enabled = true
+text = "[center]A5"

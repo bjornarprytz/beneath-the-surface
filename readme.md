@@ -10,6 +10,7 @@ Stipulation: Procedural Art
   - Build Action
   - UI for building
     - hotkeyed row of building options
+  - UI for resources
   - Hardware
     - Database (Tile)
     - Fire Wall (Edge)

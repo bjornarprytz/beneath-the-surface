@@ -10,3 +10,8 @@ var deployableSoftware: Array[SoftwareData] = []
 ## In play
 var hardware: Array[Hardware] = []
 var software: Array[Software] = []
+
+func _init() -> void:
+    buildableHardware = [
+        HardwareData.new().withName("Db").withCost(100).withType(HardwareData.Type.TILE)
+    ]

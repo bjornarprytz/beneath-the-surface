@@ -22,6 +22,9 @@ func connect_edge(edge: Edge) -> void:
 	edges.append(edge)
 	edge.connect_intersection(self)
 
+func get_edges() -> Array[Edge]:
+	return edges
+
 func _draw() -> void:
 	if tileSize == 0:
 		return

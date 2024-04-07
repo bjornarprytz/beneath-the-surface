@@ -12,7 +12,9 @@ var coordinates: Vector2i
 ## The size of the tile in pixels.
 var size: float
 
+var _neighbours: Array[Tile] = []
 var _edges: Array[Edge] = []
+var _hardware: Hardware
 
 func connect_edge(edge: Edge) -> void:
 	if _edges.has(edge):
@@ -22,22 +24,27 @@ func connect_edge(edge: Edge) -> void:
 	edge.connect_tile(self)
 
 func get_edges() -> Array[Edge]:
-	var edges = []
-	
-	push_error("get_edges() not implemented")
-
-	return edges
+	return _edges
 
 func get_neighbours() -> Array[Tile]:
-	var neighbours = []
+	if _neighbours.size() > 0:
+		return _neighbours
 	
-	push_error("get_neighbours() not implemented")
+	for e in _edges:
+		var other = e.get_other_tile(self)
+		if other != null:
+			_neighbours.append(other)
 
-	return neighbours
+	return _neighbours
+
+func add_hardware(hardware: Hardware) -> void:
+	assert(_hardware == null, "Tile already has hardware")
+	_hardware = hardware
+
+	add_child(hardware)
 
 func get_hardware() -> Hardware:
-	push_error("get_hardware() not implemented")
-	return null
+	return _hardware
 
 func get_software() -> Array[Software]:
 	push_error("get_software() not implemented")

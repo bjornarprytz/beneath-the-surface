@@ -17,6 +17,7 @@ var thickness: float
 
 var _tiles: Array[Tile]
 var _intersections: Array[Cross]
+var _hardware: Hardware
 
 func connect_tile(tile: Tile):
 	if _tiles.has(tile):
@@ -38,10 +39,23 @@ func get_intersections() -> Array[Cross]:
 func get_tiles() -> Array[Tile]:
 	return _tiles
 
-func get_hardware() -> Array[Hardware]:
-	var hardware = []
-	push_error("get_hardware() not implemented")
-	return hardware
+func get_other_tile(tile: Tile) -> Tile:
+	assert(_tiles.has(tile), "Tile not connected to edge")
+
+	if _tiles.size() != 2:
+		return null
+
+	if _tiles[0] == tile and _tiles.size() > 1:
+		return _tiles[1]
+	else:
+		return _tiles[0]
+
+func add_hardware(hardware: Hardware) -> void:
+	assert(_hardware == null, "Hardware already set")
+	_hardware = hardware
+
+func get_hardware() -> Hardware:
+	return _hardware
 
 func _draw() -> void:
 	if size == 0:

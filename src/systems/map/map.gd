@@ -2,8 +2,11 @@ class_name Map
 extends Node2D
 
 signal tileHovered(tile: Tile)
+signal tileClicked(tile: Tile)
 signal edgeHovered(edge: Edge)
+signal edgeClicked(edge: Edge)
 signal intersectionHovered(intersection: Cross)
+signal intersectionClicked(intersection: Cross)
 
 @onready var tiles = $Tiles
 @onready var edges = $Edges
@@ -30,6 +33,7 @@ func _update_map():
 			column.append(tile)
 			tiles.add_child(tile)
 			tile.hovered.connect(_tile_hovered)
+			tile.clicked.connect(_tile_clicked)
 		_tilesLookup.append(column)
 
 	# Create edge columns
@@ -41,6 +45,7 @@ func _update_map():
 			column.append(edge)
 			edges.add_child(edge)
 			edge.hovered.connect(_edge_hovered)
+			edge.clicked.connect(_edge_clicked)
 		_edgeColumnLookup.append(column)
 	
 	# Create edge rows
@@ -52,6 +57,7 @@ func _update_map():
 			row.append(edge)
 			edges.add_child(edge)
 			edge.hovered.connect(_edge_hovered)
+			edge.clicked.connect(_edge_clicked)
 		_edgeRowLookup.append(row)
 	
 	# Create intersections (cross)
@@ -63,6 +69,7 @@ func _update_map():
 			edges.add_child(intersection)
 			_intersectionLookup[x].append(intersection)
 			intersection.hovered.connect(_intersection_hovered)
+			intersection.clicked.connect(_intersection_clicked)
 
 	# Connect edges and tiles
 	for column in _edgeColumnLookup:
@@ -116,8 +123,20 @@ func _get_intersection(v: Vector2i) -> Cross:
 func _tile_hovered(tile: Tile):
 	tileHovered.emit(tile)
 
+func _tile_clicked(tile: Tile):
+	tileClicked.emit(tile)
+	print("Tile clicked")
+
 func _edge_hovered(edge: Edge):
 	edgeHovered.emit(edge)
 
+func _edge_clicked(edge: Edge):
+	edgeClicked.emit(edge)
+	print("Edge clicked")
+
 func _intersection_hovered(intersection: Cross):
 	intersectionHovered.emit(intersection)
+
+func _intersection_clicked(intersection: Cross):
+	intersectionClicked.emit(intersection)
+	print("Intersection clicked")

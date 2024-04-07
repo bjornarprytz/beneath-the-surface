@@ -10,13 +10,41 @@ func init(hardwareData: HardwareData, map: Map) -> void:
 	_hardwareData = hardwareData
 	_map = map
 
-## The build action is to place a piece of hardware on the map
-## If this is fencing, you get to drag a line along the edges
-## If this is a rack, you get to place it on a tile
-## If this is a switch, you get to place it on an intersection ??
+	match hardwareData.type:
+		HardwareData.Type.TILE:
+			map.tileClicked.connect(_on_tile_clicked)
+		HardwareData.Type.EDGE:
+			map.edgeClicked.connect(_on_edge_clicked)
+		HardwareData.Type.CROSS:
+			map.intersectionClicked.connect(_on_intersection_clicked)
+
+func cancel() -> void:
+	_finish()
 
 func _unhandled_input(event: InputEvent) -> void:
 	## Cancel with mouse 2
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			finished.emit()
+			_finish()
+
+func _on_tile_clicked(tile: Tile) -> void:
+	## Place the hardware on the tile
+	var hardware = Create.hardware(_hardwareData)
+	tile.add_hardware(hardware)
+	_finish()
+
+func _on_edge_clicked(edge: Edge) -> void:
+	## Place the hardware on the edge
+	var hardware = _hardwareData.create()
+	edge.add_hardware(hardware)
+	_finish()
+
+func _on_intersection_clicked(intersection: Cross) -> void:
+	## Place the hardware on the intersection
+	var hardware = _hardwareData.create()
+	intersection.add_hardware(hardware)
+	_finish()
+
+func _finish() -> void:
+	finished.emit()
+	queue_free()

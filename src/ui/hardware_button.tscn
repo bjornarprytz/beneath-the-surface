@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dgslutv75cjw0"]
+[gd_scene load_steps=2 format=3 uid="uid://dgslutv75cjw0"]
+
+[ext_resource type="Script" path="res://ui/hardwareButton.gd" id="1_whk5n"]
 
 [node name="HardwareButton" type="AspectRatioContainer"]
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+script = ExtResource("1_whk5n")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
