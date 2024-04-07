@@ -15,6 +15,16 @@ func _ready() -> void:
 		button.button.pressed.connect(_on_build_button_pressed.bind(hw))
 		buildingBar.add_child(button)
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	## Map number keys to buttons
+	if event is InputEventKey:
+		var key = event as InputEventKey
+		if key.pressed:
+			var buttonIndex = key.keycode - KEY_1
+			if buttonIndex >= 0 and buttonIndex < buildingBar.get_child_count():
+				var button = buildingBar.get_child(buttonIndex)
+				button.button.pressed.emit()
+
 func _on_build_button_pressed(hw: HardwareData) -> void:
 	if currentAction != null:
 		currentAction.cancel()

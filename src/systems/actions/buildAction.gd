@@ -35,13 +35,13 @@ func _on_tile_clicked(tile: Tile) -> void:
 
 func _on_edge_clicked(edge: Edge) -> void:
 	## Place the hardware on the edge
-	var hardware = _hardwareData.create()
+	var hardware = Create.hardware(_hardwareData)
 	edge.add_hardware(hardware)
 	_finish()
 
 func _on_intersection_clicked(intersection: Cross) -> void:
 	## Place the hardware on the intersection
-	var hardware = _hardwareData.create()
+	var hardware = Create.hardware(_hardwareData)
 	intersection.add_hardware(hardware)
 	_finish()
 

@@ -54,8 +54,13 @@ func add_hardware(hardware: Hardware) -> void:
 	assert(_hardware == null, "Hardware already set")
 	_hardware = hardware
 
+	background.color = hardware.data.color
+
 func get_hardware() -> Hardware:
 	return _hardware
+
+func has_hardware() -> bool:
+	return _hardware != null
 
 func _draw() -> void:
 	if size == 0:

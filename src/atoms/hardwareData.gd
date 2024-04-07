@@ -30,6 +30,9 @@ var category: Category
 ## The type of hardware
 var type: Type
 
+## Color of the hardware
+var color: Color
+
 func withCost(hwCost: int) -> HardwareData:
 	self.cost = hwCost
 	return self
@@ -44,4 +47,8 @@ func withCategory(hwCategory: Category) -> HardwareData:
 
 func withType(hwType: Type) -> HardwareData:
 	self.type = hwType
+	return self
+
+func withColor(hwColor: Color) -> HardwareData:
+	self.color = hwColor
 	return self

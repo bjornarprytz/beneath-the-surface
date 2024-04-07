@@ -15,6 +15,7 @@ var size: float
 var _neighbours: Array[Tile] = []
 var _edges: Array[Edge] = []
 var _hardware: Hardware
+var _software: Array[Software] = []
 
 func connect_edge(edge: Edge) -> void:
 	if _edges.has(edge):
@@ -37,6 +38,19 @@ func get_neighbours() -> Array[Tile]:
 
 	return _neighbours
 
+func get_unobstructed_neighbours() -> Array[Tile]:
+	var unobstructed: Array[Tile] = []
+
+	for e in _edges:
+		if e.has_hardware():
+			continue
+
+		var other = e.get_other_tile(self)
+		if other != null:
+			unobstructed.append(other)
+
+	return unobstructed
+
 func add_hardware(hardware: Hardware) -> void:
 	assert(_hardware == null, "Tile already has hardware")
 	_hardware = hardware
@@ -45,6 +59,25 @@ func add_hardware(hardware: Hardware) -> void:
 
 func get_hardware() -> Hardware:
 	return _hardware
+
+func add_software(software: Software) -> void:
+	assert(!_software.has(software), "Tile already has software")
+
+	_software.append(software)
+	if software.get_parent() == null:
+		add_child(software)
+	else:
+		software.reparent(self)
+	
+	software.currentTile = self
+
+func remove_software(software: Software) -> void:
+	assert(_software.has(software), "Tile does not have software")
+
+	_software.erase(software)
+	remove_child(software)
+
+	software.currentTile = null
 
 func get_software() -> Array[Software]:
 	push_error("get_software() not implemented")

@@ -7,24 +7,19 @@ Stipulation: Procedural Art
 ## TODO
 
 - Systems
-  - Build Action
-  - UI for building
-    - hotkeyed row of building options
   - UI for resources
-  - Hardware
-    - Database (Tile)
-    - Fire Wall (Edge)
-  - Units (Programs)
-    - Test unit: Daemon
-    - 
-    - Pathfinding
-    - Movement happens tick-wise
-    - Movement strategy and pattern defines the program
+  - Pathfinding
   - Tick
     - Move
     - Defend
     - Execute
   - Networking
+  - UX
+    - Drag&Drop in build action
+  - Test Units
+    - Software: Daemon
+    - Hardware: Database (tile)
+    - Hardware: Fire wall (edge)
 
 ## Ideas
 
@@ -37,6 +32,11 @@ Stipulation: Procedural Art
     - GPU
   - Edge
     - Encryption Layer
+
+- Secrets as life
+  - Protect your secrets
+  - Generate secrets
+  - Spend secrets
 
 - Fog of war
   - Known map parts

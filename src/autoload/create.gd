@@ -9,6 +9,8 @@ extends Node2D
 @onready var crossHardwareSpawner = preload ("res://atoms/hardware_cross.tscn")
 @onready var tileHardwareSpawner = preload ("res://atoms/hardware_tile.tscn")
 
+@onready var softwareSpawner = preload ("res://atoms/software.tscn")
+
 func tile(coord: Vector2i, size: float) -> Tile:
 	var tileScene = tileSpawner.instantiate() as Tile
 	tileScene.size = size
@@ -48,3 +50,8 @@ func hardware(hardwareData: HardwareData) -> Hardware:
 	
 	assert(false, "Hardware type not implemented")
 	return null
+
+func software(softwareData: SoftwareData) -> Software:
+	var scene = softwareSpawner.instantiate() as Software
+	scene.init(softwareData)
+	return scene

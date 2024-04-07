@@ -4,3 +4,8 @@
 
 [node name="Software" type="Node2D"]
 script = ExtResource("1_0kp8i")
+
+[node name="NameLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+bbcode_enabled = true
