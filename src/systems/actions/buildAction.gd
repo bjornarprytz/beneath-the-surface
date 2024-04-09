@@ -5,18 +5,20 @@ signal finished()
 
 var _hardwareData: HardwareData
 var _map: Map
+var _resources: Resources
 
-func init(hardwareData: HardwareData, map: Map) -> void:
+func init(hardwareData: HardwareData, gameState: GameState) -> void:
 	_hardwareData = hardwareData
-	_map = map
+	_map = gameState.map
+	_resources = gameState.player.resources
 
 	match hardwareData.type:
 		HardwareData.Type.TILE:
-			map.tileClicked.connect(_on_tile_clicked)
+			_map.tileClicked.connect(_on_tile_clicked)
 		HardwareData.Type.EDGE:
-			map.edgeClicked.connect(_on_edge_clicked)
+			_map.edgeClicked.connect(_on_edge_clicked)
 		HardwareData.Type.CROSS:
-			map.intersectionClicked.connect(_on_intersection_clicked)
+			_map.intersectionClicked.connect(_on_intersection_clicked)
 
 func cancel() -> void:
 	_finish()
@@ -31,6 +33,7 @@ func _on_tile_clicked(tile: Tile) -> void:
 	## Place the hardware on the tile
 	var hardware = Create.hardware(_hardwareData)
 	tile.add_hardware(hardware)
+	_resources.bitcoin -= _hardwareData.cost
 	_finish()
 
 func _on_edge_clicked(edge: Edge) -> void:

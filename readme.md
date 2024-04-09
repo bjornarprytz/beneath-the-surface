@@ -7,7 +7,6 @@ Stipulation: Procedural Art
 ## TODO
 
 - Systems
-  - UI for resources
   - Pathfinding
   - Tick
     - Move

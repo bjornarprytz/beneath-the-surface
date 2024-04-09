@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://q2ocyqjlxkdp"]
+
+[ext_resource type="Script" path="res://ui/resourceInfo.gd" id="1_x3fiy"]
+
+[node name="ResourceInfo" type="HFlowContainer"]
+offset_left = 62.0
+offset_top = 10.0
+offset_right = 463.0
+offset_bottom = 88.0
+script = ExtResource("1_x3fiy")
+
+[node name="GPU" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="RichTextLabel" parent="GPU"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "GPU"
+fit_content = true
+
+[node name="Value" type="RichTextLabel" parent="GPU"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "5468"
+fit_content = true
+
+[node name="CPU" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="RichTextLabel" parent="CPU"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "CPU"
+fit_content = true
+
+[node name="Value" type="RichTextLabel" parent="CPU"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "5468"
+fit_content = true
+
+[node name="RAM" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="RichTextLabel" parent="RAM"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "RAM"
+fit_content = true
+
+[node name="Value" type="RichTextLabel" parent="RAM"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "5468"
+fit_content = true
+
+[node name="TB" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="RichTextLabel" parent="TB"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "TB"
+fit_content = true
+
+[node name="Value" type="RichTextLabel" parent="TB"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "5468"
+fit_content = true
+
+[node name="BTC" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="RichTextLabel" parent="BTC"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "BTC"
+fit_content = true
+
+[node name="Value" type="RichTextLabel" parent="BTC"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "5468"
+fit_content = true

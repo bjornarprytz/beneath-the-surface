@@ -5,7 +5,7 @@ var buildActionSpawner: PackedScene = preload ("res://systems/actions/build_acti
 
 func build(hardware: HardwareData, gameState: GameState):
 	var buildAction = buildActionSpawner.instance() as BuildAction
-	buildAction.init(hardware, gameState.map)
+	buildAction.init(hardware, gameState)
 	add_child(buildAction)
 
 	await buildAction.finished

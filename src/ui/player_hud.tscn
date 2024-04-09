@@ -1,15 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://ooqsoaduvaih"]
+[gd_scene load_steps=3 format=3 uid="uid://ooqsoaduvaih"]
 
 [ext_resource type="Script" path="res://ui/playerHud.gd" id="1_q88xo"]
+[ext_resource type="PackedScene" uid="uid://q2ocyqjlxkdp" path="res://ui/resource_info.tscn" id="2_q0udt"]
 
 [node name="PlayerHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_q88xo")
 
-[node name="Buildings" type="HFlowContainer" parent="."]
+[node name="Hardware" type="HFlowContainer" parent="."]
 layout_mode = 0
 offset_left = 139.0
 offset_top = 604.0
 offset_right = 751.0
 offset_bottom = 687.0
+
+[node name="ResourceInfo" parent="." instance=ExtResource("2_q0udt")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 401.0
+offset_bottom = 78.0
